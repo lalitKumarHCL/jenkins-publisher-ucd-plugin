@@ -28,12 +28,16 @@ import org.apache.http.HttpResponse;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.kohsuke.stapler.DataBoundConstructor;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * This class creates an HttpClient for running UCD rest commands
  *
  */
 @SuppressWarnings("deprecation") // Triggered by DefaultHttpClient
 public class UrbanDeploySite implements Serializable {
+    public static final java.util.logging.Logger log = LoggerFactory.getLogger(UrbanDeploySite.class);
 
     private static final long serialVersionUID = -8723534991244260459L;
 
@@ -99,10 +103,9 @@ public class UrbanDeploySite implements Serializable {
     }
 
     public DefaultHttpClient getClient() {
-        if (client == null) {
-            client = UDRestClient.createHttpClient(user, password.toString(), trustAllCerts);
-        }
-
+        log.info("SOMETHING SOMETHING");
+        client = UDRestClient.createHttpClient(user, password.toString(), trustAllCerts);
+        log.info("SOMETHING SOMETHING 2");
         return client;
     }
 
